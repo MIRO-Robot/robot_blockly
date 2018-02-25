@@ -10,7 +10,7 @@ This ROS package is based on `robot_blockly` (https://github.com/erlerobot/robot
 ```
 mkdir -p ~/blockly_ws/src
 cd ~/blockly_ws/src
-git clone --recurse-submodules https://github.com/MIRO-Robot/Blockly.git
+git clone --recurse-submodules https://github.com/MIRO-Robot/robot_blockly.git
 cd ..
 catkin_make_isolated -j2 --pkg robot_blockly --install
 ```
