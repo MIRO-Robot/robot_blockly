@@ -25,7 +25,8 @@ sudo pip3 install autobahn
 
 5. Build blockly custom blocks:
 ```
-python ~/blockly_ws/install_isolated/share/robot_blockly/frontend/blockly/build.py
+cd ~/blockly_ws/install_isolated/share/robot_blockly/frontend/blockly/
+python build.py
 ```
 
 ## Launch it
