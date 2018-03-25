@@ -14,6 +14,19 @@ git clone --recurse-submodules https://github.com/MIRO-Robot/robot_blockly.git
 cd ..
 catkin_make_isolated -j2 --pkg robot_blockly --install
 ```
+3. Install Python dependencies:
+```
+sudo pip3 install rospkg
+sudo pip3 install catkin_pkg
+sudo pip3 install autobahn
+```
+
+4. Install `mavros` by following this link: https://github.com/mavlink/mavros
+
+5. Build blockly custom blocks:
+```
+python ~/blockly_ws/install_isolated/share/robot_blockly/frontend/blockly/build.py
+```
 
 ## Launch it
 
