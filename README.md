@@ -39,3 +39,6 @@ roslaunch robot_blockly robot_blockly.launch
 ## Usage
 
 In order to access the blockly interface after launching it, navigate to: http://localhost:1036/pages/blockly.html#
+
+## Adding Custom blocks
+To create your own blocks, follow this link: http://docs.erlerobotics.com/robot_operating_system/ros/blockly/block_creation
