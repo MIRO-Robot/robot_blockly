@@ -146,6 +146,9 @@ class BlocklyServerProtocol(WebSocketServerProtocol):
     def onOpen(self):
         print("WebSocket connection open.")
 
+    def onPing(self):
+        self.sendMessage("ping".encode('utf-8'), False)
+
     def onMessage(self, payload, isBinary):
         # Debug
         if isBinary:
@@ -487,6 +490,7 @@ class RobotBlocklyBackend(object):
 
         factory = WebSocketServerFactory(u"ws://0.0.0.0:9000")
         factory.protocol = BlocklyServerProtocol
+        factory.setProtocolOptions(autoPingInterval=1, autoPingTimeout=3, autoPingSize=20)
 
         loop = asyncio.get_event_loop()
         coro = loop.create_server(factory, '0.0.0.0', 9000)
