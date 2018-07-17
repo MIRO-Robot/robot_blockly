@@ -476,6 +476,13 @@ class RobotBlocklyBackend(object):
         # anonymous=True flag means that rospy will choose a unique
         # name for our 'talker' node so that multiple talkers can
         # run simultaneously.
+        port_env_var = "BLOCKLY_PORT"
+        if port_env_var in os.environ:
+            blockly_port = int(os.environ[port_env_var])
+        else:
+            blockly_port = 9000
+        ws_factory_string = str("ws://0.0.0.0:" + str(blockly_port))
+
         rospy.init_node('blockly_server', anonymous=True)
         rospy.Subscriber("blockly", String, RobotBlocklyBackend.callback)
         CodeStatus.initialize_publisher()
@@ -485,11 +492,11 @@ class RobotBlocklyBackend(object):
         rospy.Service('program_completed', Empty, RobotBlocklyBackend.__set_status_completed)
         rospy.Service('program_set_current_block_id', SetCurrentBlockId, self.__set_current_block_id)
 
-        factory = WebSocketServerFactory(u"ws://0.0.0.0:9000")
+        factory = WebSocketServerFactory(ws_factory_string)
         factory.protocol = BlocklyServerProtocol
 
         loop = asyncio.get_event_loop()
-        coro = loop.create_server(factory, '0.0.0.0', 9000)
+        coro = loop.create_server(factory, '0.0.0.0', blockly_port)
         server = loop.run_until_complete(coro)
         asyncio.async(RobotBlocklyBackend.wait_until_ros_node_shutdown(loop))
 
