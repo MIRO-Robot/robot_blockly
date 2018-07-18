@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 # Code shared by translation conversion scripts.
 #
@@ -59,7 +59,7 @@ def read_json_file(filename):
     if '@metadata' in defs:
       del defs['@metadata']
     return defs
-  except ValueError, e:
+  except ValueError as e:
     print('Error reading ' + filename)
     raise InputError(filename, str(e))
 

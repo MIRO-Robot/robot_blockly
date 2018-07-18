@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 # Converts .xlf files into .json files for use at http://translatewiki.net.
 #

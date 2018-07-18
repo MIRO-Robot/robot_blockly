@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2.7
 
 # Generate .js files defining Blockly core and language messages.
 #
