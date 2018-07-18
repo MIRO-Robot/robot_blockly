@@ -135,7 +135,7 @@ var ExecutionLogicModule = (function () {
 
     launch_websockets: function () {
       var host_name = window.location.hostname;
-      var host_port = process.env.BLOCKLY_PORT;
+      var host_port = "9000";
       socket = new WebSocket("ws://" + host_name + ":" + host_port);
       // socket = new WebSocket("ws://127.0.0.1:9000");
       // socket = new WebSocket("ws://10.0.0.1:9000");
