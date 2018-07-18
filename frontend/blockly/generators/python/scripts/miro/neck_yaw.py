@@ -1,5 +1,6 @@
 from miro_msgs.msg import platform_control
 from time import sleep
+from miro_constants import miro
 
 
 if ('current_robot' not in locals()):
@@ -25,4 +26,4 @@ q.body_config_speed[2] = miro.MIRO_P2U_W_LEAN_SPEED_INF
 while(pub.get_num_connections() == 0):
 	rate.sleep()
 pub.publish(q)
-sleep(4)	#Allow time for the move to be executed
+sleep(3)	#Allow time for the move to be executed

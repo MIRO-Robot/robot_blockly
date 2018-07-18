@@ -105,7 +105,7 @@ Blockly.Python['neck_yaw'] = function(block) {
 Blockly.Python['neck_lift'] = function(block) {
   var dropdown_lift = block.getFieldValue('Lift');
   var code = '...\n';
-  code += "dropdown_lift = \"" + dropdown_yaw.toString() + "\"\n";
+  code += "dropdown_lift = \"" + dropdown_lift.toString() + "\"\n";
   code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/neck_lift.py");
   return code;
 };
@@ -113,7 +113,7 @@ Blockly.Python['neck_lift'] = function(block) {
 Blockly.Python['neck_pitch'] = function(block) {
   var dropdown_pitch = block.getFieldValue('Pitch');
   var code = '...\n';
-  code += "dropdown_pitch = \"" + dropdown_yaw.toString() + "\"\n";
+  code += "dropdown_pitch = \"" + dropdown_pitch.toString() + "\"\n";
   code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/neck_pitch.py");
   return code;
 };

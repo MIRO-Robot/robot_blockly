@@ -18,5 +18,5 @@ q.body_vel = body_vel
 while(pub.get_num_connections() == 0):
 	rate.sleep()
 pub.publish(q)
-sleep(4)	#Allow time for the move to be executed
+sleep(3)	#Allow time for the move to be executed
 

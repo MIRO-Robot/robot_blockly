@@ -177,7 +177,7 @@ Blockly.Blocks['neck_pitch'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Neck pitch")
-        .appendField(new Blockly.FieldDropdown([["Up","P_RIGHT"], ["Center","P_CENTER"], ["Down","P_DOWN"]]), "Pitch");
+        .appendField(new Blockly.FieldDropdown([["Up","P_UP"], ["Center","P_CENTER"], ["Down","P_DOWN"]]), "Pitch");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
