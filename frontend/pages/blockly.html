@@ -646,8 +646,21 @@
         automate_localstorage();
     }
 
+    //Read port from url
+    //Read port from url
+    var parameters = location.href.substring(1).split("&");
+    var temp = parameters[1].split("=");
+    l = unescape(temp[1]);
+
+    console.log(location)
+    console.log(parameters)
+    console.log(temp)
+    console.log(l)
+    // document.getElementById("log").innerHTML = l;
+    // document.getElementById("pass").innerHTML = p;
+
     // Launch websockets
-    ExecutionLogicModule.launch_websockets();
+    ExecutionLogicModule.launch_websockets(l);
 
     // Recursively store everything after x miliseconds
     // automate_localstorage();
