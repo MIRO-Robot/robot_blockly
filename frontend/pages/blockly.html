@@ -45,9 +45,9 @@
     <script src="../blockly/blocks/code.js"></script>
     <script src="../blockly/blocks/control.js"></script>
     <script src="../blockly/blocks/miro.js"></script>
-    <script src="../blockly/blocks/erle-rover.js"></script>
+    <!-- <script src="../blockly/blocks/erle-rover.js"></script>
     <script src="../blockly/blocks/erle-brain.js"></script>
-    <script src="../blockly/blocks/erle-spider.js"></script>
+    <script src="../blockly/blocks/erle-spider.js"></script> -->
 
     <!-- <script src="../blockly/python_compressed.js"></script> -->
     <script src="../blockly/generators/python.js"></script>
@@ -63,9 +63,9 @@
     <script src="../blockly/generators/python/control.js"></script>
     <!-- Robots -->
     <script src="../blockly/generators/python/miro.js"></script>
-    <script src="../blockly/generators/python/erle-rover.js"></script>
+<!--     <script src="../blockly/generators/python/erle-rover.js"></script>
     <script src="../blockly/generators/python/erle-brain.js"></script>
-    <script src="../blockly/generators/python/erle-spider.js"></script>
+    <script src="../blockly/generators/python/erle-spider.js"></script> -->
 
     <!-- <script src="../blockly/php_compressed.js"></script> -->
     <script src="../blockly/generators/php.js"></script>
@@ -145,8 +145,12 @@
                 <li class="dropdown">
 
                     <ul style="padding-top:10px;">
-                      <img style="width:30px;" src="http://erlerobotics.com/blog/wp-content/uploads/2015/04/erlerobotics-logo.png"/>
-                      <a href="http://erlerobotics.com">Erle Robotics</a>
+                      <a href="https://cyberselves.org//">
+                      <img border="0" style="width:30px;" src="img/cyberselves.jpg" height="30"> </a>
+
+
+                      <a href="http://consequentialrobotics.com/">
+                      <img border="0" style="width:120px;" src="img/cqr.png" height="30"> </a>
                     </ul>
 
 
@@ -212,13 +216,13 @@
                                 <li>
                                     <a id="clean_ws_button" name="clean_ws_button" href="#" onclick='ExecutionLogicModule.clean_ws();'>Clean workspace</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <div id="pythondiv" style="color:#75A8D3; text-align:center" >
                                         <span>Python:</span>
                                         <input id="python3" type="radio" value="3" name="group_py" checked />3
                                         <input id="python2" type="radio" value="2" name="group_py" />2
                                     </div>
-                                </li>
+                                </li> -->
 <!--                                 <li>
                                     <a href="#" onclick="localstorage();">Save</a>
                                 </li>
@@ -239,7 +243,7 @@
                             <!-- /.nav-second-level -->
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <a href="graph.html"><i class="fa fa-sitemap fa-fw"></i> Graph</a>
                         </li>
 
@@ -256,7 +260,7 @@
                                     <a id="stop_control_button" name="stop_control_button" href="#" onclick="ExecutionLogicModule.manual_control('stop');" style="display:none;">Stop Control</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -468,7 +472,7 @@
 
 
     </category>
-    <category id="spider" name="Erle-Spider" colour="260">
+    <!-- <category id="spider" name="Erle-Spider" colour="260">
           <block type="spider_standup_down"></block>
           <block type="spider_walk"></block>
           <block type="spider_turn"></block>
@@ -494,7 +498,7 @@
           <block type="start_sick_laser"></block>
           <block type="start_slam"></block>
           <block type="find_path"></block>
-    </category>
+    </category> -->
 
 
     </xml>
