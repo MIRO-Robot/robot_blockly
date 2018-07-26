@@ -1,16 +1,4 @@
-from miro_msgs.msg import platform_control
-from time import sleep
-from miro_constants import miro
-
-
-if ('current_robot' not in locals()):
-	current_robot = 'sim01'
-
-pub = rospy.Publisher('/miro/' + current_robot + '/platform/control',
-    platform_control, queue_size=10)
-
-rate = rospy.Rate(10)
-q = platform_control()
+#-----------------------------START LIFT NECK MOVEMENT---------------------------------
 
 if dropdown_lift == 'L_UP':
     direction = miro.MIRO_LIFT_MIN_RAD
@@ -27,3 +15,5 @@ while(pub.get_num_connections() == 0):
 	rate.sleep()
 pub.publish(q)
 sleep(3)	#Allow time for the move to be executed
+
+#-----------------------------END LIFT NECK MOVEMENT---------------------------------

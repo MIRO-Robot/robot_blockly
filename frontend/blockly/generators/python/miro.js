@@ -3,6 +3,12 @@
 goog.provide('Blockly.Python.miro');
 goog.require('Blockly.Python');
 
+Blockly.Python['setup_miro'] = function(block) {
+  var code = "";
+  code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/setup_miro.py");
+  return code;
+};
+
 Blockly.Python['move_forward'] = function(block) {
   var code = "";
   code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/move_forward.py");

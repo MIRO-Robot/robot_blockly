@@ -4,6 +4,17 @@ goog.provide('Blockly.Blocks.miro');
 
 goog.require('Blockly.Blocks');
 
+Blockly.Blocks['setup_miro'] = {
+  init: function() {
+    this.appendDummyInput()
+  .appendField("Setup Miro");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+    this.setHelpUrl('http://www.example.com/');
+  }
+};
+
 
 Blockly.Blocks['move_forward'] = {
   init: function() {

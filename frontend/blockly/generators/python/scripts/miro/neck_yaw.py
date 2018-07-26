@@ -1,16 +1,5 @@
-from miro_msgs.msg import platform_control
-from time import sleep
-from miro_constants import miro
+#-----------------------------START YAW NECK MOVEMENT---------------------------------
 
-
-if ('current_robot' not in locals()):
-	current_robot = 'sim01'
-
-pub = rospy.Publisher('/miro/' + current_robot + '/platform/control',
-    platform_control, queue_size=10)
-
-rate = rospy.Rate(10)
-q = platform_control()
 
 if dropdown_yaw == 'Y_RIGHT':
     direction = miro.MIRO_YAW_MAX_RAD
@@ -27,3 +16,5 @@ while(pub.get_num_connections() == 0):
 	rate.sleep()
 pub.publish(q)
 sleep(3)	#Allow time for the move to be executed
+
+#-----------------------------END YAW NECK MOVEMENT---------------------------------
