@@ -171,6 +171,7 @@ Blockly.Blocks['get_cam_colour'] = {
     {
         this.appendDummyInput()
             .appendField("Get Cam Colour")
+            .appendField(new Blockly.FieldColour('#ff0000'), 'colorBGR');
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);

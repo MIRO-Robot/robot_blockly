@@ -2,6 +2,13 @@
 import json
 import os
 import shutil
+import sys
+
+compressed_flag = False
+
+if len(sys.argv) > 1:
+    if sys.argv[1] == "compressed":
+        compressed_flag = True
 
 block_notebook_fname = "block_definitions.ipynb"
 # block_notebook_fname = "test.ipynb"
@@ -15,8 +22,12 @@ python_js_dest = "../frontend/blockly/generators/python/miro.js"
 blocks_js_fname = "blocks_js.js"
 blocks_js_dest = "../frontend/blockly/blocks/miro.js"
 
-with open(os.path.join("blockly_html_p1.txt"), 'r') as b:
-    blockly_p1 = b.readlines()
+if compressed_flag:
+    with open(os.path.join("blockly_html_p1.txt"), 'r') as b:
+        blockly_p1 = b.readlines()
+else:
+    with open(os.path.join("blockly_html_p1_uncompressed.txt"), 'r') as b:
+        blockly_p1 = b.readlines()
 
 with open(os.path.join("blockly_html_p2.txt"), 'r') as b:
     blockly_p2 = b.readlines()
@@ -138,8 +149,8 @@ def blocks_js_template(block_name, input_user_params, input_code_params,
                 interface += """["{0}","{1}"], """.format(input_user_params[op], input_code_params[op])
 
             interface = interface[:-2] + """]), "{0}");\n""".format(input_var_name)
-        elif interface_type == "color_wheel":
-            interface = "            .appendField(new Blockly.FieldColour('#ff0000'), {0});\n".format(input_var_name)
+        elif interface_type == "colour_wheel" or interface_type == "color_wheel":
+            interface = "            .appendField(new Blockly.FieldColour('#ff0000'), '{0}');\n".format(input_var_name)
 
     block = template_p1 + "{\n" + template_p2 + "    {\n" + return_line + \
             template_p3 + interface + template_p4 + "    }\n};\n\n"

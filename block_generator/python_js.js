@@ -114,6 +114,8 @@ Blockly.Python['capture_image'] = function(block)
 Blockly.Python['get_cam_colour'] = function(block)
     {
         var code = "";
+        var colorBGR = block.getFieldValue('colorBGR');
+        code += "colorBGR = \"" + colorBGR.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/get_cam_colour.py");
         return code;
     };

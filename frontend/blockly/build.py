@@ -462,8 +462,15 @@ https://developers.google.com/blockly/hacking/closure""")
   # Run both tasks in parallel threads.
   # Uncompressed is limited by processor speed.
   # Compressed is limited by network and server speed.
-  Gen_uncompressed(search_paths).start()
-  Gen_compressed(search_paths).start()
+  
+  if len(sys.argv) > 1:
+      if sys.argv[1] == "compressed":
+          Gen_uncompressed(search_paths).start()
+          Gen_compressed(search_paths).start()
+          print("Compiled Compressed")
+      else:
+          Gen_uncompressed(search_paths).start()
+          print("Compiled Uncompressed")
 
   # This is run locally in a separate thread.
   Gen_langfiles().start()

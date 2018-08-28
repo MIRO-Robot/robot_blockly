@@ -1,6 +1,5 @@
 
 #-----------------------------START GET_CAM_COLOUR---------------------------------
-colorBGR = "0,100,0"
 #colorBGR (colour picker input)
 inB = int(colorBGR.split(',')[0])
 inG = int(colorBGR.split(',')[1])

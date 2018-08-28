@@ -33,7 +33,7 @@ cv2.imwrite(images_path+ 'image_' + timestr, image_np)
 #cv2.imwrite('/home/erle/spider_ws/install_isolated/share/robot_blockly/frontend/pages/images/image_' + timestr, image_np)
 #images_path = "/home/erle/spider_ws/install_isolated/share/robot_blockly/frontend/pages/images/"
 
-files = len(os.listdir(images_path)) #amount of files in /frontend/images/ folder foxommi1
+files = len(os.listdir(images_path)) #amount of files in /frontend/images/ folder
 
 if files > 7 : #allow 5 images max
     os.system("find "+images_path+" -name '*.png' | xargs ls -t | tail -n 1 | xargs rm")#remove oldest image
