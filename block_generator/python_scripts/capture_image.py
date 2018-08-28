@@ -5,7 +5,7 @@ timestr = time.strftime("%d-%m-%Y_%H-%M-%S.png")
 # Ros Messages	 
 from sensor_msgs.msg import CompressedImage
 
-msg_image = rospy.wait_for_message('/miro/sim01/platform/caml/compressed', CompressedImage, timeout=7)
+msg_image = rospy.wait_for_message('/miro/'  + current_robot + '/platform/caml/compressed', CompressedImage, timeout=7)
 np_arr = np.frombuffer(msg_image.data, np.uint8)
 image_np = cv2.imdecode(np_arr, 1) #cv2.CV_LOAD_IMAGE_COLOR
 

@@ -111,3 +111,10 @@ Blockly.Python['capture_image'] = function(block)
         return code;
     };
 
+Blockly.Python['get_cam_colour'] = function(block)
+    {
+        var code = "";
+        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/get_cam_colour.py");
+        return code;
+    };
+

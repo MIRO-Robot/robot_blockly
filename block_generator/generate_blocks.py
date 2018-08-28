@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 import json
 import os
 import shutil
@@ -130,12 +131,15 @@ def blocks_js_template(block_name, input_user_params, input_code_params,
         return_line += """this.appendValueInput("{0}")\n""".format(return_var)
 
     interface = ""
-    if interface_type is not None and len(input_user_params) > 0 and len(input_user_params) == len(input_code_params):
-        interface = "            .appendField(new Blockly.FieldDropdown(["
-        for op in range(len(input_user_params)):
-            interface += """["{0}","{1}"], """.format(input_user_params[op], input_code_params[op])
+    if interface_type is not None:
+        if interface_type == "dropdown" and len(input_user_params) > 0 and len(input_user_params) == len(input_code_params):
+            interface = "            .appendField(new Blockly.FieldDropdown(["
+            for op in range(len(input_user_params)):
+                interface += """["{0}","{1}"], """.format(input_user_params[op], input_code_params[op])
 
-        interface = interface[:-2] + """]), "{0}");\n""".format(input_var_name)
+            interface = interface[:-2] + """]), "{0}");\n""".format(input_var_name)
+        elif interface_type == "color_wheel":
+            interface = "            .appendField(new Blockly.FieldColour('#ff0000'), {0});\n".format(input_var_name)
 
     block = template_p1 + "{\n" + template_p2 + "    {\n" + return_line + \
             template_p3 + interface + template_p4 + "    }\n};\n\n"
@@ -269,3 +273,4 @@ if len(cells) > 1:
     shutil.rmtree(python_scripts_dest)
     shutil.copytree(python_scripts_fname, python_scripts_dest)
     shutil.copy("blockly.html", "../frontend/pages/blockly.html")
+    print "Finished Compiling Blocks"

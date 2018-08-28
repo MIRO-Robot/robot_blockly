@@ -166,3 +166,16 @@ Blockly.Blocks['capture_image'] = {
     }
 };
 
+Blockly.Blocks['get_cam_colour'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Get Cam Colour")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
