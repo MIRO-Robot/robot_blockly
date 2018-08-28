@@ -27,6 +27,10 @@
 goog.provide('Blockly.Blocks.miro');
 goog.require('Blockly.Blocks');
 
+/**
+ * Common HSV hue for all blocks in this category.
+ */
+// Blockly.Blocks.miro.HUE = 260;
 
 Blockly.Blocks['move_forward'] = {
   init: function() {

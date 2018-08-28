@@ -20,7 +20,7 @@
 
 /**
  * @fileoverview Blocks for Miro.
- * @author Daniel Camilleri, Natalie Wood
+ * @author Daniel Camilleri
 */
 
 'use strict';

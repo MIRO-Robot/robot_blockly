@@ -8,10 +8,10 @@ block_notebook_fname = "block_definitions.ipynb"
 python_scripts_fname = "python_scripts"
 python_scripts_dest = "../frontend/blockly/generators/python/scripts/miro"
 
-python_js_fname = "python_js"
+python_js_fname = "python_js.js"
 python_js_dest = "../frontend/blockly/generators/python/miro.js"
 
-blocks_js_fname = "blocks_js"
+blocks_js_fname = "blocks_js.js"
 blocks_js_dest = "../frontend/blockly/blocks/miro.js"
 
 with open(os.path.join("blockly_html_p1.txt"), 'r') as b:
