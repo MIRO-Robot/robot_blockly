@@ -566,8 +566,22 @@
         automate_localstorage();
     }
 
+    //Read port from url
+    var this_port = location.href.split(":")[2].split("/")[0];
+    var port_diff = 1036 - parseInt(this_port);
+    var backend_port_int = 9000 + port_diff
+    var backend_port_str = backend_port_int.toString()
+
+    console.log(this_port)
+    console.log(port_diff)
+    console.log(backend_port_int)
+    console.log(backend_port_str)
+
+    // document.getElementById("log").innerHTML = l;
+    // document.getElementById("pass").innerHTML = p;
+
     // Launch websockets
-    ExecutionLogicModule.launch_websockets();
+    ExecutionLogicModule.launch_websockets(backend_port_str);
 
     // Recursively store everything after x miliseconds
     // automate_localstorage();

@@ -133,9 +133,9 @@ var ExecutionLogicModule = (function () {
 
   return {
 
-    launch_websockets: function () {
+    launch_websockets: function (host_port) {
       var host_name = window.location.hostname;
-      socket = new WebSocket("ws://" + host_name + ":9000");
+      socket = new WebSocket("ws://" + host_name + ":" + host_port);
       // socket = new WebSocket("ws://127.0.0.1:9000");
       // socket = new WebSocket("ws://10.0.0.1:9000");
       // socket = new WebSocket("ws:/erle-brain-2.local:9000");
