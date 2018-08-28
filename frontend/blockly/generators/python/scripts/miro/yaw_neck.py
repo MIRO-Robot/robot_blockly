@@ -15,5 +15,5 @@ q.body_config_speed[2] = miro.MIRO_P2U_W_LEAN_SPEED_INF
 while(pub.get_num_connections() == 0):
     rate.sleep()
 pub.publish(q)
-sleep(3)	#Allow time for the move to be executed
+time.sleep(3)	#Allow time for the move to be executed
 #-----------------------------END YAW_NECK---------------------------------

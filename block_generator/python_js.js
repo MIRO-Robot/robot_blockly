@@ -98,3 +98,16 @@ Blockly.Python['yaw_neck'] = function(block)
         return code;
     };
 
+Blockly.Python['capture_image'] = function(block)
+    {
+
+        window.open(
+            '/pages/images/imageViewer.html',
+            '_blank' // <- This is what makes it open in a new window.
+        );
+
+        var code = "";
+        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/capture_image.py");
+        return code;
+    };
+

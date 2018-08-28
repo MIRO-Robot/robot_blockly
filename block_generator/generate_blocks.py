@@ -73,7 +73,7 @@ def partition(mode, name):
     return "\n#-----------------------------{0} {1}---------------------------------\n".format(mode.upper(), name.upper())
 
 
-def python_js_template(block_name, input_var_name, return_var, returns):
+def python_js_template(block_name, input_var_name, return_var, returns, show_image):
     template_p1 = "Blockly.Python['{0}'] = function(block)".format(block_name)
 
     return_line = "        "
@@ -95,7 +95,12 @@ def python_js_template(block_name, input_var_name, return_var, returns):
         template_params += "        var {0} = block.getFieldValue('{0}');\n".format(input_var_name)
         template_params += '        code += "{0} = \\"" + {0}.toString() + "\\"\\n";\n'.format(input_var_name)
 
-    block = template_p1 + "\n    {\n" + block_read_var + params_intro + template_params + \
+    show_image_str = ""
+    if show_image:
+        show_image_str = "\n        window.open(\n            '/pages/images/imageViewer.html',\n            " \
+                         "'_blank' // <- This is what makes it open in a new window.\n        );\n\n"
+
+    block = template_p1 + "\n    {\n" + show_image_str + block_read_var + params_intro + template_params + \
             template_p2 + return_line + "    };\n\n"
 
     return block
@@ -181,6 +186,7 @@ if len(cells) > 1:
         input_params_list = None
         input_vars_list = None
         block_color = None
+        show_image_flag = False
 
         if c["cell_type"] == "code":
             src_code = c["source"]
@@ -225,6 +231,8 @@ if len(cells) > 1:
                                 block_color = None
                         elif "def " in k and "(" in k and "):" in k or "global" in k:
                             pass
+                        elif "# Show Image" in k:
+                            show_image_flag = True
                         elif k != "\n":
                             unindented_code.append(k[4:])
                         else:
@@ -247,7 +255,8 @@ if len(cells) > 1:
                     b.writelines(python_js_template(block_name=block_name,
                                                     input_var_name=input_var_name,
                                                     return_var=return_var_name,
-                                                    returns=return_code))
+                                                    returns=return_code,
+                                                    show_image=show_image_flag))
 
     with open(os.path.join("blockly.html"), 'a') as b:
         b.writelines(blockly_p1)

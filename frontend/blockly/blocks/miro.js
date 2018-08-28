@@ -153,3 +153,16 @@ Blockly.Blocks['yaw_neck'] = {
     }
 };
 
+Blockly.Blocks['capture_image'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Capture Image")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+

@@ -105,7 +105,7 @@ Blockly.Blocks['get_distance'] = {
             .appendField("Get Distance")
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
-        this.setColour(230);
+        this.setColour(160);
         this.setTooltip("");
         this.setHelpUrl("");
     }
@@ -145,6 +145,19 @@ Blockly.Blocks['yaw_neck'] = {
         this.appendDummyInput()
             .appendField("Yaw Neck")
             .appendField(new Blockly.FieldDropdown([["Right","Y_RIGHT"], ["Left","Y_LEFT"], ["Centre","Y_CENTRE"]]), "dropdown_yaw");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['capture_image'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Capture Image")
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
