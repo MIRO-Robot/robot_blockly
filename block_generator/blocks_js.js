@@ -116,7 +116,7 @@ Blockly.Blocks['lift_neck'] = {
     {
         this.appendDummyInput()
             .appendField("Lift Neck")
-            .appendField(new Blockly.FieldDropdown([["Up", "L_UP"], ["Down", "L_DOWN"], ["Centre", "L_CENTRE"]]), "dropdown_lift");
+            .appendField(new Blockly.FieldDropdown([["Up","L_UP"], ["Down","L_DOWN"], ["Centre","L_CENTRE"]]), "dropdown_lift");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
@@ -130,7 +130,7 @@ Blockly.Blocks['pitch_neck'] = {
     {
         this.appendDummyInput()
             .appendField("Pitch Neck")
-            .appendField(new Blockly.FieldDropdown([["Up", "P_UP"], ["Down", "P_DOWN"], ["Centre", "P_CENTRE"]]), "dropdown_pitch");
+            .appendField(new Blockly.FieldDropdown([["Up","P_UP"], ["Down","P_DOWN"], ["Centre","P_CENTRE"]]), "dropdown_pitch");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
@@ -144,7 +144,7 @@ Blockly.Blocks['yaw_neck'] = {
     {
         this.appendDummyInput()
             .appendField("Yaw Neck")
-            .appendField(new Blockly.FieldDropdown([["Right", "Y_RIGHT"], ["Left", "Y_LEFT"], ["Centre", "Y_CENTRE"]]), "dropdown_yaw");
+            .appendField(new Blockly.FieldDropdown([["Right","Y_RIGHT"], ["Left","Y_LEFT"], ["Centre","Y_CENTRE"]]), "dropdown_yaw");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);

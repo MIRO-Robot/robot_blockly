@@ -81,7 +81,7 @@ def python_js_template(block_name, input_var_name, return_var, returns):
         block_read_var = "        var varName = Blockly.Python.valueToCode(block, '{0}', " \
                          "Blockly.Python.ORDER_ATOMIC);\n".format(return_var)
 
-        return_line += "return code + varName + {0}\n".format(returns)
+        return_line += "return code + varName + {0};\n".format(returns)
     else:
         block_read_var = ""
         return_line += "return code;\n"
@@ -92,7 +92,7 @@ def python_js_template(block_name, input_var_name, return_var, returns):
     params_intro = """        var code = "";\n"""
     template_params = ""
     if input_var_name is not None:
-        template_params += "        var {0} = block.getFieldValue({0});\n".format(input_var_name)
+        template_params += "        var {0} = block.getFieldValue('{0}');\n".format(input_var_name)
         template_params += '        code += "{0} = \\"" + {0}.toString() + "\\"\\n";\n'.format(input_var_name)
 
     block = template_p1 + "\n    {\n" + block_read_var + params_intro + template_params + \
@@ -128,7 +128,7 @@ def blocks_js_template(block_name, input_user_params, input_code_params,
     if interface_type is not None and len(input_user_params) > 0 and len(input_user_params) == len(input_code_params):
         interface = "            .appendField(new Blockly.FieldDropdown(["
         for op in range(len(input_user_params)):
-            interface += """["{0}", "{1}"], """.format(input_user_params[op], input_code_params[op])
+            interface += """["{0}","{1}"], """.format(input_user_params[op], input_code_params[op])
 
         interface = interface[:-2] + """]), "{0}");\n""".format(input_var_name)
 
@@ -255,7 +255,8 @@ if len(cells) > 1:
             b.write('        <block type="{0}"></block>\n'.format(k))
         b.writelines(blockly_p2)
 
-    # shutil.copy(python_js_fname, python_js_dest)
-    # shutil.copy(blocks_js_fname, blocks_js_dest)
-    # shutil.rmtree(python_scripts_dest)
-    # shutil.copytree(python_scripts_fname, python_scripts_dest)
+    shutil.copy(python_js_fname, python_js_dest)
+    shutil.copy(blocks_js_fname, blocks_js_dest)
+    shutil.rmtree(python_scripts_dest)
+    shutil.copytree(python_scripts_fname, python_scripts_dest)
+    shutil.copy("blockly.html", "../frontend/pages/blockly.html")

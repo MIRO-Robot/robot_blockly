@@ -22,6 +22,7 @@
  * @fileoverview Blocks for Miro.
  * @author Daniel Camilleri, Natalie Wood
 */
+
 'use strict';
 
 goog.provide('Blockly.Blocks.miro');
@@ -32,58 +33,123 @@ goog.require('Blockly.Blocks');
  */
 // Blockly.Blocks.miro.HUE = 260;
 
-Blockly.Blocks['move_forward'] = {
-  init: function() {
-    this.appendDummyInput()
-	.appendField("Move Forward");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
+Blockly.Blocks['setup_miro'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Setup Miro")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
 
 Blockly.Blocks['move_backward'] = {
-  init: function() {
-    this.appendDummyInput()
-	.appendField("Move Backward");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Move Backward")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
 
-Blockly.Blocks['turn_right'] = {
-  init: function() {
-    this.appendDummyInput()
-	.appendField("Turn Right");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
+Blockly.Blocks['move_forward'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Move Forward")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
 
 Blockly.Blocks['turn_left'] = {
-  init: function() {
-    this.appendDummyInput()
-	.appendField("Turn Left");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Turn Left")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['turn_right'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Turn Right")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(230);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
 
 Blockly.Blocks['get_distance'] = {
-  init: function() {
-    this.appendValueInput("distance")
-        .appendField("Distance");
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    this.setColour(0);
-    this.setTooltip('');
-    this.setHelpUrl('http://www.example.com/');
-  }
+    init: function() 
+    {
+        this.appendValueInput("get_distance_var")
+            .appendField("Get Distance")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
+
+Blockly.Blocks['lift_neck'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Lift Neck")
+            .appendField(new Blockly.FieldDropdown([["Up","L_UP"], ["Down","L_DOWN"], ["Centre","L_CENTRE"]]), "dropdown_lift");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['pitch_neck'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Pitch Neck")
+            .appendField(new Blockly.FieldDropdown([["Up","P_UP"], ["Down","P_DOWN"], ["Centre","P_CENTRE"]]), "dropdown_pitch");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['yaw_neck'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Yaw Neck")
+            .appendField(new Blockly.FieldDropdown([["Right","Y_RIGHT"], ["Left","Y_LEFT"], ["Centre","Y_CENTRE"]]), "dropdown_yaw");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+

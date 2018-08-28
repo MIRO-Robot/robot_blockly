@@ -13,4 +13,3 @@ pub = rospy.Publisher('/miro/' + current_robot + '/platform/control',
 rate = rospy.Rate(10)
 q = platform_control()
 #-----------------------------END SETUP_MIRO---------------------------------
-

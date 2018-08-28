@@ -20,7 +20,7 @@
 
 /**
  * @fileoverview Blocks for Miro.
- * @author Daniel Camilleri
+ * @author Daniel Camilleri, Natalie Wood
 */
 
 'use strict';
@@ -68,13 +68,13 @@ Blockly.Python['get_distance'] = function(block)
         var varName = Blockly.Python.valueToCode(block, 'get_distance_var', Blockly.Python.ORDER_ATOMIC);
         var code = "";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/get_distance.py");
-        return code + varName + msg_distance.range
+        return code + varName + msg_distance.range;
     };
 
 Blockly.Python['lift_neck'] = function(block)
     {
         var code = "";
-        var dropdown_lift = block.getFieldValue(dropdown_lift);
+        var dropdown_lift = block.getFieldValue('dropdown_lift');
         code += "dropdown_lift = \"" + dropdown_lift.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/lift_neck.py");
         return code;
@@ -83,7 +83,7 @@ Blockly.Python['lift_neck'] = function(block)
 Blockly.Python['pitch_neck'] = function(block)
     {
         var code = "";
-        var dropdown_pitch = block.getFieldValue(dropdown_pitch);
+        var dropdown_pitch = block.getFieldValue('dropdown_pitch');
         code += "dropdown_pitch = \"" + dropdown_pitch.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/pitch_neck.py");
         return code;
@@ -92,7 +92,7 @@ Blockly.Python['pitch_neck'] = function(block)
 Blockly.Python['yaw_neck'] = function(block)
     {
         var code = "";
-        var dropdown_yaw = block.getFieldValue(dropdown_yaw);
+        var dropdown_yaw = block.getFieldValue('dropdown_yaw');
         code += "dropdown_yaw = \"" + dropdown_yaw.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/yaw_neck.py");
         return code;

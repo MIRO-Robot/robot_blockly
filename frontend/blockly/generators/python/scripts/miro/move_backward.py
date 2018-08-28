@@ -11,4 +11,3 @@ while(pub.get_num_connections() == 0):
 pub.publish(q)
 sleep(3)	#Allow time for the move to be executed
 #-----------------------------END MOVE_BACKWARD---------------------------------
-
