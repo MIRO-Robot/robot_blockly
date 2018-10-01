@@ -1,20 +1,24 @@
 
 #-----------------------------START SETUP_MIRO---------------------------------
-from miro_constants import miro
 from miro_msgs.msg import platform_control
+from miro_constants import miro
 from geometry_msgs.msg import Twist
-import time
+from sensor_msgs.msg import Range, Image
+from std_msgs.msg import Float32MultiArray
 import sys
 import rospy
 import subprocess
 import rosnode
-import math
 import numpy as np
 import cv2
+import time
 import os
+import math
 import rospkg
 
-if ('current_robot' not in locals()):
+if miro_type == "physical":
+    current_robot = 'rob01'
+else:
     current_robot = 'sim01'
 
 pub = rospy.Publisher('/miro/' + current_robot + '/platform/control',

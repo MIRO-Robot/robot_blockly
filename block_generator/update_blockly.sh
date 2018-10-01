@@ -15,6 +15,7 @@ fi
 cd $SRC_FOLDER/blockly_ws
 catkin_make_isolated -j4 --pkg robot_blockly --install
 
-export PYTHONPATH=/home/icub/.local/lib/python3.5/site-packages:$PYTHONPATH
 source $SRC_FOLDER/blockly_ws/install_isolated/setup.bash
+export PYTHONPATH=/usr/local/lib/python3.5/dist-packages/cv2:$MIRO_PATH_MDK/share:$PYTHONPATH
+#export ROS_IP=192.168.1.3
 roslaunch robot_blockly robot_blockly.launch

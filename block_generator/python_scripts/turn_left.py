@@ -8,5 +8,6 @@ q.body_vel = body_vel
 while(pub.get_num_connections() == 0):
     rate.sleep()
 pub.publish(q)
-time.sleep(3)	#Allow time for the move to be executed
+time.sleep(2)
+body_vel.angular.z = 0#Allow time for the move to be executed
 #-----------------------------END TURN_LEFT---------------------------------

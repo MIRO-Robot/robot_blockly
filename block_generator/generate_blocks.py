@@ -1,3 +1,6 @@
+# Copyright (c) 2018, Cyberselves
+# Author: Daniel Camilleri
+# All rights reserved.
 #!/usr/bin/env python2
 import json
 import os
@@ -93,10 +96,10 @@ def python_js_template(block_name, input_var_name, return_var, returns, show_ima
         block_read_var = "        var varName = Blockly.Python.valueToCode(block, '{0}', " \
                          "Blockly.Python.ORDER_ATOMIC);\n".format(return_var)
 
-        return_line += "return code + varName + {0};\n".format(returns)
+        return_line += 'return code + varName + "={0} \\n";'.format(returns)
     else:
         block_read_var = ""
-        return_line += "return code;\n"
+        return_line += "return code;\n\n"
 
     template_p2 = \
 """        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/{0}.py");\n""".format(block_name)
@@ -191,6 +194,8 @@ cells = nb["cells"]
 # So notebook can be used to test code with gazebo before compiling
 
 block_names = []
+block_groups = []
+group_colours = []
 
 if len(cells) > 1:
     for c in cells[1:]:
@@ -216,13 +221,15 @@ if len(cells) > 1:
                 if def_parts[1] != "):\n":
                     input_var_name = def_parts[1].split(")")[0]
                 block_names.append(block_name)
+                block_groups.append("Miro")
+                group_colours.append(None)
 
                 # Create script
                 with open(os.path.join(python_scripts_fname, block_name + ".py"), 'a') as b:
                     unindented_code = []
                     unindented_code.append(partition("start", block_name))
                     for k in src_code:
-                        if "return" in k:
+                        if "return " in k:
                             return_code = k.split("return ")[1]
                             return_var_name = block_name + "_var"
                         elif "Interface:" in k and "#" in k:
@@ -239,6 +246,21 @@ if len(cells) > 1:
                                 raise TypeError("Specify Interface before Parameters")
                             else:
                                 raise ValueError(str(user_interface) + "not yet supported")
+                        elif "GroupColour:" in k and "#" in k:
+                            try:
+                                group_colours[-1] = int(k.split("GroupColour:")[1].replace(" ", "").replace("\n", ""))
+                            except Exception as e:
+                                pass
+                        elif "GroupColor:" in k and "#" in k:
+                            try:
+                                group_colours[-1] = int(k.split("GroupColor:")[1].replace(" ", "").replace("\n", ""))
+                            except Exception as e:
+                                pass
+                        elif "Group:" in k and "#" in k:
+                            try:
+                                block_groups[-1] = k.split("Group:")[1].replace(" ", "").replace("\n", "").replace("_", " ")
+                            except Exception as e:
+                                pass
                         elif "Colour:" in k and "#" in k:
                             try:
                                 block_color = int(k.split("Colour:")[1].replace(" ", "").replace("\n", ""))
@@ -272,11 +294,31 @@ if len(cells) > 1:
                                                     return_var=return_var_name,
                                                     returns=return_code,
                                                     show_image=show_image_flag))
+    last_group = None
 
+    def set_colors(ggcolors, ggnames, gname, gcolor):
+        for a, b in enumerate(ggnames):
+            if b == gname:
+                ggcolors[a] = gcolor
+
+    for n, gc in enumerate(group_colours):
+        if gc is None:
+            group_colours[n] = 260
+        else:
+            set_colors(ggcolors=group_colours, ggnames=block_groups, gname=block_groups[n], gcolor=gc)
+
+
+    last_group = None
     with open(os.path.join("blockly.html"), 'a') as b:
         b.writelines(blockly_p1)
-        for k in block_names:
-            b.write('        <block type="{0}"></block>\n'.format(k))
+        for n, g in enumerate(list(block_groups)):
+            if g != last_group:
+                if last_group is not None:
+                    b.write('        </category>\n')
+                b.write('        <category id="{1}" name="{0}" colour="{2}">\n'.format(g, g.lower(), group_colours[n]))
+                last_group = g
+            b.write('            <block type="{0}"></block>\n'.format(block_names[n]))
+        b.write('        </category>\n')
         b.writelines(blockly_p2)
 
     shutil.copy(python_js_fname, python_js_dest)

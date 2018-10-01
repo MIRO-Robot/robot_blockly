@@ -38,6 +38,7 @@ Blockly.Blocks['setup_miro'] = {
     {
         this.appendDummyInput()
             .appendField("Setup Miro")
+            .appendField(new Blockly.FieldDropdown([["Simulation","sim"], ["Physical","physical"]]), "miro_type");
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
@@ -98,19 +99,6 @@ Blockly.Blocks['turn_right'] = {
     }
 };
 
-Blockly.Blocks['get_distance'] = {
-    init: function() 
-    {
-        this.appendValueInput("get_distance_var")
-            .appendField("Get Distance")
-        this.setPreviousStatement(true, null);
-        this.setNextStatement(true, null);
-        this.setColour(160);
-        this.setTooltip("");
-        this.setHelpUrl("");
-    }
-};
-
 Blockly.Blocks['lift_neck'] = {
     init: function() 
     {
@@ -153,6 +141,47 @@ Blockly.Blocks['yaw_neck'] = {
     }
 };
 
+Blockly.Blocks['wag_tail'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Wag Tail")
+            .appendField(new Blockly.FieldDropdown([["Droop","Droop"], ["Neutral","Neutral"], ["Wagging","Wagging"]]), "dropdown_wag");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['move_ears'] = {
+    init: function() 
+    {
+        this.appendDummyInput()
+            .appendField("Move Ears")
+            .appendField(new Blockly.FieldDropdown([["Droop","Droop"], ["Neutral","Neutral"], ["Wagging","Wagging"]]), "dropdown_ears");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['get_distance'] = {
+    init: function() 
+    {
+        this.appendValueInput("get_distance_var")
+            .appendField("Get Distance")
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(160);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
 Blockly.Blocks['capture_image'] = {
     init: function() 
     {
@@ -166,12 +195,39 @@ Blockly.Blocks['capture_image'] = {
     }
 };
 
-Blockly.Blocks['get_cam_colour'] = {
+Blockly.Blocks['get_colour_pixels'] = {
     init: function() 
     {
-        this.appendDummyInput()
-            .appendField("Get Cam Colour")
-            .appendField(new Blockly.FieldColour('#ff0000'), 'colorBGR');
+        this.appendValueInput("get_colour_pixels_var")
+            .appendField("Get Colour Pixels")
+            .appendField(new Blockly.FieldColour('#ff0000'), 'hex_string');
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['get_colour_direction'] = {
+    init: function() 
+    {
+        this.appendValueInput("get_colour_direction_var")
+            .appendField("Get Colour Direction")
+            .appendField(new Blockly.FieldColour('#ff0000'), 'hex_string');
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(180);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.Blocks['find_circle'] = {
+    init: function() 
+    {
+        this.appendValueInput("find_circle_var")
+            .appendField("Find Circle")
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);

@@ -1,4 +1,3 @@
-</category>
     <!-- <category id="spider" name="Erle-Spider" colour="260">
           <block type="spider_standup_down"></block>
           <block type="spider_walk"></block>

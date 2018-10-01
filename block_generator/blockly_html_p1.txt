@@ -385,4 +385,3 @@
           <block type="wait"></block>
     </category>
     <sep></sep>
-    <category id="miro" name="Miro" colour="260">
