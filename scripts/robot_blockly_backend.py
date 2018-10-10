@@ -479,6 +479,13 @@ class RobotBlocklyBackend(object):
         # anonymous=True flag means that rospy will choose a unique
         # name for our 'talker' node so that multiple talkers can
         # run simultaneously.
+        port_env_var = "BLOCKLY_PORT"
+        if port_env_var in os.environ:
+            blockly_port = int(os.environ[port_env_var])
+        else:
+            blockly_port = 9000
+        ws_factory_string = str("ws://0.0.0.0:" + str(blockly_port))
+
         rospy.init_node('blockly_server', anonymous=True)
         rospy.Subscriber("blockly", String, RobotBlocklyBackend.callback)
         CodeStatus.initialize_publisher()
