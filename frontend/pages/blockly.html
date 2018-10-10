@@ -587,7 +587,9 @@
     }
 
     //Read port from url
-    var this_port = location.href.split(":")[2].split("/")[0];
+    // http://armor-ventura-1036.codio.io/pages/blockly.html
+    // var this_port = location.href.split(":")[2].split("/")[0];
+    var this_port = 1036;
     var port_diff = 1036 - parseInt(this_port);
     var backend_port_int = 9000 + port_diff
     var backend_port_str = backend_port_int.toString()
