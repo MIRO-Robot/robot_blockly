@@ -136,12 +136,10 @@ var ExecutionLogicModule = (function () {
     launch_websockets: function (host_port) {
       var host_name = window.location.hostname;
       var mainhost = host_name.split('-');
-      socket = new WebSocket("ws://" + mainhost[0] + '-' + mainhost[1] + "-9000.codio.io");
 
-      // socket = new WebSocket("ws://127.0.0.1:9000");
-      // socket = new WebSocket("ws://10.0.0.1:9000");
-      // socket = new WebSocket("ws:/erle-brain-2.local:9000");
-      // socket = new WebSocket("ws://192.168.1.57:9000");
+      // socket = new WebSocket("ws://" + mainhost[0] + '-' + mainhost[1] + "-9000.codio.io"); // Codio
+
+      socket = new WebSocket("ws://127.0.0.1:9000"); // Docker
       socket.binaryType = "arraybuffer";
 
       socket.onopen = function () {

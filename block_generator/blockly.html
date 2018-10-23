@@ -389,10 +389,8 @@
             <block type="setup_miro"></block>
         </category>
         <category id="miro motion" name="Miro Motion" colour="200">
-            <block type="move_backward"></block>
-            <block type="move_forward"></block>
-            <block type="turn_left"></block>
-            <block type="turn_right"></block>
+            <block type="move_distance"></block>
+            <block type="turn_angle"></block>
             <block type="lift_neck"></block>
             <block type="pitch_neck"></block>
             <block type="yaw_neck"></block>
@@ -401,12 +399,10 @@
         </category>
         <category id="miro sensors" name="Miro Sensors" colour="180">
             <block type="get_distance"></block>
-            <block type="capture_image"></block>
         </category>
-        <category id="miro utility" name="Miro Utility" colour="260">
+        <category id="miro utility" name="Miro Utility" colour="200">
             <block type="get_colour_pixels"></block>
             <block type="get_colour_direction"></block>
-            <block type="find_circle"></block>
         </category>
     <!-- <category id="spider" name="Erle-Spider" colour="260">
           <block type="spider_standup_down"></block>
@@ -587,7 +583,7 @@
     }
 
     //Read port from url
-    var this_port = location.href.split(":")[2].split("/")[0];
+    var this_port = 1036;
     var port_diff = 1036 - parseInt(this_port);
     var backend_port_int = 9000 + port_diff
     var backend_port_str = backend_port_int.toString()

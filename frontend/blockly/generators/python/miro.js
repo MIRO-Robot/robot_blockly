@@ -20,7 +20,7 @@
 
 /**
  * @fileoverview Blocks for Miro.
- * @author Daniel Camilleri, Natalie Wood
+ * @author Daniel Camilleri
 */
 
 'use strict';
@@ -38,34 +38,30 @@ Blockly.Python['setup_miro'] = function(block)
 
     };
 
-Blockly.Python['move_backward'] = function(block)
+Blockly.Python['move_distance'] = function(block)
     {
         var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/move_backward.py");
+        var direction = block.getFieldValue('direction');
+        code += "direction = \"" + direction.toString() + "\"\n";
+        var velocity = Blockly.Python.valueToCode(block, "velocity", Blockly.Python.ORDER_ATOMIC);
+        code += "velocity = " + velocity + "\n";
+        var duration = Blockly.Python.valueToCode(block, "duration", Blockly.Python.ORDER_ATOMIC);
+        code += "duration = " + duration + "\n";
+        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/move_distance.py");
         return code;
 
     };
 
-Blockly.Python['move_forward'] = function(block)
+Blockly.Python['turn_angle'] = function(block)
     {
         var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/move_forward.py");
-        return code;
-
-    };
-
-Blockly.Python['turn_left'] = function(block)
-    {
-        var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/turn_left.py");
-        return code;
-
-    };
-
-Blockly.Python['turn_right'] = function(block)
-    {
-        var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/turn_right.py");
+        var direction = block.getFieldValue('direction');
+        code += "direction = \"" + direction.toString() + "\"\n";
+        var angular_velocity = Blockly.Python.valueToCode(block, "angular_velocity", Blockly.Python.ORDER_ATOMIC);
+        code += "angular_velocity = " + angular_velocity + "\n";
+        var duration = Blockly.Python.valueToCode(block, "duration", Blockly.Python.ORDER_ATOMIC);
+        code += "duration = " + duration + "\n";
+        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/turn_angle.py");
         return code;
 
     };
@@ -113,8 +109,10 @@ Blockly.Python['wag_tail'] = function(block)
 Blockly.Python['move_ears'] = function(block)
     {
         var code = "";
-        var dropdown_ears = block.getFieldValue('dropdown_ears');
-        code += "dropdown_ears = \"" + dropdown_ears.toString() + "\"\n";
+        var ears_group = block.getFieldValue('ears_group');
+        code += "ears_group = \"" + ears_group.toString() + "\"\n";
+        var ears_direction = block.getFieldValue('ears_direction');
+        code += "ears_direction = \"" + ears_direction.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/move_ears.py");
         return code;
 
@@ -126,20 +124,6 @@ Blockly.Python['get_distance'] = function(block)
         var code = "";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/get_distance.py");
         return code + varName + "=msg_distance.range \n";    };
-
-Blockly.Python['capture_image'] = function(block)
-    {
-
-        window.open(
-            '/pages/images/imageViewer.html',
-            '_blank' // <- This is what makes it open in a new window.
-        );
-
-        var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/capture_image.py");
-        return code;
-
-    };
 
 Blockly.Python['get_colour_pixels'] = function(block)
     {
@@ -157,12 +141,5 @@ Blockly.Python['get_colour_direction'] = function(block)
         var hex_string = block.getFieldValue('hex_string');
         code += "hex_string = \"" + hex_string.toString() + "\"\n";
         code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/get_colour_direction.py");
-        return code + varName + "=result \n";    };
-
-Blockly.Python['find_circle'] = function(block)
-    {
-        var varName = Blockly.Python.valueToCode(block, 'find_circle_var', Blockly.Python.ORDER_ATOMIC);
-        var code = "";
-        code += Blockly.readPythonFile("../blockly/generators/python/scripts/miro/find_circle.py");
         return code + varName + "=result \n";    };
 
