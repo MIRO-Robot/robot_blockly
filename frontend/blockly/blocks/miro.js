@@ -43,7 +43,8 @@ Blockly.Blocks['setup_miro'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of physical or simulated \n' + 
+                        'robot | Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -65,7 +66,10 @@ Blockly.Blocks['move_distance'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of direction (Forward or \n' + 
+                        'Backward). Floating point input velocity in \n' + 
+                        'metres/s. Floating point duration in seconds | \n' + 
+                        'Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -87,7 +91,10 @@ Blockly.Blocks['turn_angle'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(230);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of direction (Clockwise \n' + 
+                        'or Anticlockwise). Floating point input velocity \n' + 
+                        'in radians/s. Floating point duration in seconds \n' + 
+                        '| Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -102,7 +109,8 @@ Blockly.Blocks['lift_neck'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of  Up, Down or Centre \n' + 
+                        'that changes the head height | Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -117,7 +125,8 @@ Blockly.Blocks['pitch_neck'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of  Up, Down or Centre \n' + 
+                        'that changes the head pitch | Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -132,7 +141,8 @@ Blockly.Blocks['yaw_neck'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of  Right, Left or Centre \n' + 
+                        'that changes the head yaw | Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -147,7 +157,9 @@ Blockly.Blocks['wag_tail'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of  Droop, Neutral or \n' + 
+                        'Wagging that changes the activity of the tail | \n' + 
+                        'Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -165,7 +177,9 @@ Blockly.Blocks['move_ears'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Dropdown choice of ear group (Left, Right \n' + 
+                        'or Both) and ear direction (Forwards, Sideways) \n' + 
+                        'to control ear movements| Output: None \n');
         this.setHelpUrl("");
       }
 };
@@ -180,7 +194,9 @@ Blockly.Blocks['get_distance'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(160);
-        this.setTooltip("");
+        this.setTooltip('Inputs: None | Output: Returns the distance in \n' + 
+                        'metres from the nose to the closest object using \n' + 
+                        'ultrasound \n');
         this.setHelpUrl("");
       }
 };
@@ -196,7 +212,12 @@ Blockly.Blocks['get_colour_pixels'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Colour to search | Method: Stitches input \n' + 
+                        'from both cameras and counts number of pixels \n' + 
+                        'that are of the same input colour| Output: \n' + 
+                        'Returns a positive value from 0 to 1 which is a \n' + 
+                        'percentage of same coloured pixels with the field \n' + 
+                        'of view \n');
         this.setHelpUrl("");
       }
 };
@@ -212,7 +233,12 @@ Blockly.Blocks['get_colour_direction'] = {
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour(180);
-        this.setTooltip("");
+        this.setTooltip('Inputs: Colour to search | Method: Stitches input \n' + 
+                        'from both cameras and finds the orientation of \n' + 
+                        'the largest amount with respect to robot head | \n' + 
+                        'Returns: Integer value representing direction of \n' + 
+                        'colour. -1 to indicate left, 0 to indicate \n' + 
+                        'straight ahead and 1 to indicate right.    \n');
         this.setHelpUrl("");
       }
 };

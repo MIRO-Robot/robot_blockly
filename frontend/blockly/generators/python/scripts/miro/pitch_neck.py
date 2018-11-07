@@ -1,5 +1,6 @@
 
 #-----------------------------START PITCH_NECK---------------------------------
+
 if dropdown_pitch == 'P_UP':
     direction = miro.MIRO_PITCH_MIN_RAD
 elif dropdown_pitch == 'P_DOWN':

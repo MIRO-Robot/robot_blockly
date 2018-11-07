@@ -1,7 +1,6 @@
 
 #-----------------------------START MOVE_DISTANCE---------------------------------
 
-
 velocity = abs(velocity)
 if direction != "forward":
     velocity = -velocity

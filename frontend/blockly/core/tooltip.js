@@ -42,7 +42,7 @@ Blockly.Tooltip.visible = false;
 /**
  * Maximum width (in characters) of a tooltip.
  */
-Blockly.Tooltip.LIMIT = 50;
+Blockly.Tooltip.LIMIT = 2000;
 
 /**
  * PID of suspended thread to clear tooltip on mouse out.
@@ -99,12 +99,12 @@ Blockly.Tooltip.RADIUS_OK = 10;
 /**
  * Delay before tooltip appears.
  */
-Blockly.Tooltip.HOVER_MS = 750;
+Blockly.Tooltip.HOVER_MS = 400;
 
 /**
  * Horizontal padding between tooltip and screen edge.
  */
-Blockly.Tooltip.MARGINS = 5;
+Blockly.Tooltip.MARGINS = 20;
 
 /**
  * The HTML container.  Set once by Blockly.Tooltip.createDom.

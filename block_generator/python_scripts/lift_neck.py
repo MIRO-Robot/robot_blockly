@@ -1,5 +1,6 @@
 
 #-----------------------------START LIFT_NECK---------------------------------
+
 if dropdown_lift == 'L_UP':
     direction = miro.MIRO_LIFT_MIN_RAD
 elif dropdown_lift == 'L_DOWN':

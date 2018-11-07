@@ -145,14 +145,36 @@ def blocks_js_template(block_dict):
 
     template_p1 = "Blockly.Blocks['{0}'] = ".format(block_dict["name"])
     template_p2 = "    init: function() \n"
+
+    # tooltip_text = "\\n' + \n                        '{0}\\n"
+
+    tooltip_lines = block_dict["tooltip"].split("\\n")
+
+    lines = []
+    for line in tooltip_lines:
+        line_words = line.split(" ")
+        this_line = ""
+        for w in line_words:
+            if len(this_line) + len(w) + 1 > 50:
+                lines.append(this_line)
+                this_line = w + " "
+            else:
+                this_line += w + " "
+        lines.append(this_line)
+
+    tooltip_text = lines.pop(0)
+    for line in lines:
+        tooltip_text += "\\n' + \n                        '{0}".format(line)
+    tooltip_text += "\\n"
+
     template_p4 = \
         """this.setInputsInline(true);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
         this.setColour({0});
-        this.setTooltip("");
+        this.setTooltip('{1}');
         this.setHelpUrl("");
-      """.format(block_dict["block_colour"])
+      """.format(block_dict["block_colour"], tooltip_text)
 
 
     named = False
@@ -287,6 +309,7 @@ if len(cells) > 1:
                 blocks_dict[block_name]["block_group"] = "Miro"
                 blocks_dict[block_name]["block_colour"] = None
                 blocks_dict[block_name]["group_colour"] = None
+                blocks_dict[block_name]["tooltip"] = ""
                 blocks_dict[block_name]["inputs"] = OrderedDict()
                 blocks_dict[block_name]["output"] = dict()
                 input_counter = 0
@@ -328,6 +351,8 @@ if len(cells) > 1:
                                 raise TypeError("Specify Interface before Parameters")
                             else:
                                 raise ValueError(str(user_interface) + "not yet supported")
+                        elif "Tooltip:" in k and "#" in k:
+                            blocks_dict[block_name]["tooltip"] = k.split("Tooltip:")[1][1:-1]
                         elif "GroupColour:" in k and "#" in k:
                             try:
                                 blocks_dict[block_name]["group_colour"] = int(k.split("GroupColour:")[1].replace(" ", "").replace("\n", ""))

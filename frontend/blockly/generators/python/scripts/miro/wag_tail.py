@@ -1,6 +1,7 @@
 
 #-----------------------------START WAG_TAIL---------------------------------
 
+
 if dropdown_wag == 'Droop':
     q.tail = -1
 elif dropdown_wag == 'Neutral':

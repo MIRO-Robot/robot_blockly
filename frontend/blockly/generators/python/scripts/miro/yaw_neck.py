@@ -1,5 +1,6 @@
 
 #-----------------------------START YAW_NECK---------------------------------
+
 if dropdown_yaw == 'Y_RIGHT':
     direction = miro.MIRO_YAW_MAX_RAD
 elif dropdown_yaw == 'Y_LEFT':

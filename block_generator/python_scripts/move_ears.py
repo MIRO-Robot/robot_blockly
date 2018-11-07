@@ -1,6 +1,7 @@
 
 #-----------------------------START MOVE_EARS---------------------------------
 
+
 if ears_direction == 'Forward':
     direction_value = 0
 else:

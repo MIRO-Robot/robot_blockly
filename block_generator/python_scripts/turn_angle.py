@@ -3,7 +3,7 @@
 
 
 angular_velocity = abs(angular_velocity)
-if direction != "forward":
+if direction != "anticlockwise":
     angular_velocity = -angular_velocity
 
 if duration > 0:

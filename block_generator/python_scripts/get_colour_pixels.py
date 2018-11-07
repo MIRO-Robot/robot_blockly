@@ -1,5 +1,6 @@
 
 #-----------------------------START GET_COLOUR_PIXELS---------------------------------
+
 hex_str = hex_string.lstrip("#")
 lv = len(hex_str)
 colorRGB = tuple(int(hex_str[i:i+ lv // 3], 16) for i in range(0, lv, lv // 3))
