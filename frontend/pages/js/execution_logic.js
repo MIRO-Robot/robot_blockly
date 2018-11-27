@@ -139,7 +139,7 @@ var ExecutionLogicModule = (function () {
 
       // socket = new WebSocket("ws://" + mainhost[0] + '-' + mainhost[1] + "-9000.codio.io"); // Codio
 
-      socket = new WebSocket("ws://127.0.0.1:9000"); // Docker
+      socket = new WebSocket("ws://" + mainhost[0] + ":9000"); // Docker
       socket.binaryType = "arraybuffer";
 
       socket.onopen = function () {
