@@ -10,12 +10,12 @@ then
 		cd $SRC_FOLDER/blockly_ws/src/robot_blockly/block_generator && python generate_blocks.py uncompressed
 		cd $SRC_FOLDER/blockly_ws/src/robot_blockly/frontend/blockly/ && python build.py uncompressed
 	fi
+	cd $SRC_FOLDER/blockly_ws
+	catkin_make_isolated -j4 --pkg robot_blockly --install
 fi
-
-cd $SRC_FOLDER/blockly_ws
-catkin_make_isolated -j4 --pkg robot_blockly --install
 
 source $SRC_FOLDER/blockly_ws/install_isolated/setup.bash
 export PYTHONPATH=/usr/local/lib/python3.5/dist-packages/cv2:$MIRO_PATH_MDK/share:$PYTHONPATH
-#export ROS_IP=192.168.1.3
+python3 /usr/local/src/robot/blockly_ws/src/robot_blockly/scripts/image_app.py &
 roslaunch robot_blockly robot_blockly.launch
+
