@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<link rel="stylesheet" href="frames.css">
+<html>
+
+<script type="text/javascript">
+	function showImages() {
+		console.log("Button pressed");
+	    var elem = document.getElementById("imageShowButton");
+	    if (elem.value=="Show Image Variables") {
+	    	elem.value = "Hide Image Variables";
+	    	document.getElementById("images_div").style.height='25%';
+	    	document.getElementById("blockly_div").style.height='75%';
+	    }
+	    else {
+	    	elem.value="Show Image Variables";
+	    	document.getElementById("images_div").style.height='0%';
+	    	document.getElementById("blockly_div").style.height='100%';
+	    }
+	}
+</script>
+
+<head>
+    <title>Miro-Blockly interface</title>
+</head>
+
+<div class="header">
+	<div style="width:40%;float:left">
+		 <input onclick="showImages()" type=button value="Show Image Variables" id="imageShowButton"/>
+	</div>
+	<div style="width:30%;float:left">
+		<img src="Sheffield-Robotics.png" alt="Sheffield robotics logo"  width="200" height="auto" float="right"/>
+	</div>
+	<div style="width:30%;float:right">
+    	<p style="float:right">Miro graphical programming environment</p>
+	</div>
+</div>
+
+<div id=div1 class="columntype">
+	<div id="blockly_div" class="rowtype" style="height:100%">
+		<iframe id="Blockly" src="http://localhost:1036/pages/blockly.html#" style="width:100%;height:100%"></iframe>
+	</div>
+	<div id="images_div" class="rowtype"  style="height:0%">
+		<iframe id="ImageInspector" src="http://localhost:5000" style="width:100%;height:100%"></iframe>
+	</div>
+</div> 
+
+<div id="gazebo_div" class="columntype">
+	<iframe id=Blockly src="http://localhost:8080" style="width:100%;height:100%"></iframe>
+</div>
+
+
+
+</html>
