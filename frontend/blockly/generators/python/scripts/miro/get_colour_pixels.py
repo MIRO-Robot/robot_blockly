@@ -29,6 +29,17 @@ upper = np.array([colorHSV[0]+offset, 255, 255])
 
 mask = cv2.inRange(hsv_image, lower, upper)
 
+while(image_pub.get_num_connections() == 0):
+    rate.sleep()
+
+msg = CompressedImage()
+msg.header.stamp = rospy.Time.now()
+msg.format = "jpeg"
+msg.data = np.array(cv2.imencode('.jpg', mask)[1]).tostring()
+# Publish new image
+image_pub.publish(msg)
+time.sleep(1)
+
 result_left = float(cv2.countNonZero(mask[:,:frac])) / mask.size
 result_right = float(cv2.countNonZero(mask[:,-frac:])) / mask.size
 
