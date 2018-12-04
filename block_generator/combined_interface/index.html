@@ -55,8 +55,9 @@
 		var host_name = window.location.hostname;
         if (host_name.includes("codio"))
         {
-          var mainhost = host_name.split('-');
-          var socket = "http://" + mainhost[0] + '-' + mainhost[1] + "-" + port + ".codio.io";
+          var host_parts = host_name.split('-');
+          var host_parts_2 = host_parts[1].split(".");
+          var socket = "http://" + host_parts[0] + '-' + host_parts_2[0] + "-" + port + ".codio.io";
         }
         else if( navigator.platform.includes("Windows"))
         {
