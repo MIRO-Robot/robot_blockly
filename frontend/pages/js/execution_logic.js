@@ -137,9 +137,15 @@ var ExecutionLogicModule = (function () {
       var host_name = window.location.hostname;
       var mainhost = host_name.split('-');
 
-      //socket = new WebSocket("ws://" + mainhost[0] + '-' + mainhost[1] + "-9000.codio.io"); // Codio
-
-      socket = new WebSocket("ws://" + mainhost[0] + ":9000"); // Docker
+      if (host_name.includes("codio"))
+      {
+        socket = new WebSocket("ws://" + mainhost[0] + '-' + mainhost[1] + "-9000.codio.io");
+      }
+      else
+      {
+        socket = new WebSocket("ws://" + mainhost[0] + ":9000");
+      }
+      
       socket.binaryType = "arraybuffer";
 
       socket.onopen = function () {
