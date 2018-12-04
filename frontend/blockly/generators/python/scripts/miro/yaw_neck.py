@@ -1,9 +1,9 @@
 
 #-----------------------------START YAW_NECK---------------------------------
 
-if dropdown_yaw == 'Y_RIGHT':
+if dropdown_yaw == 'Y_LEFT':
     direction = miro.MIRO_YAW_MAX_RAD
-elif dropdown_yaw == 'Y_LEFT':
+elif dropdown_yaw == 'Y_RIGHT':
     direction = miro.MIRO_YAW_MIN_RAD
 else:
     direction = (miro.MIRO_YAW_MIN_RAD + miro.MIRO_YAW_MAX_RAD )/2
