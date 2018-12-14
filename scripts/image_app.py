@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-# Author: Matt Whelan
+# Author: Daniel Camilleri
 
-from flask import Flask, render_template, Response
 import rospy
 from sensor_msgs.msg import Range, Image, CompressedImage
 from std_msgs.msg import String
@@ -11,62 +10,81 @@ import cv2
 import sys
 import os
 
+import asyncio
+import pathlib
+import ssl
+import websockets
+import json
+import base64
+import time
+
 rospy.init_node('image_server', anonymous=True, disable_signals=True)
 rate = rospy.Rate(100)
-app = Flask(__name__)
 
-@app.route('/')
-def index():
-    """Video streaming home page."""
-    return render_template('index.html')
+async def get_ros_image(image_topic):
+    try:
+        return rospy.wait_for_message(image_topic, CompressedImage, timeout=0.5).data
+    except rospy.exceptions.ROSException as e:
+        return None
+    except Exception as e:
+        print(e)
+        return None
 
 
-def gen(stream_name=""):
-    """Video streaming generator function."""
+async def message_sender(websocket, path):
+    print("Starting server")
+    topics_list = ['/miro/sim01/platform/camr/compressed',
+                   '/blockly/imageVariables/threshold/compressed']
+
+    topic_names = ["Right Camera", "Colour Threshold"]
+
+    counters = [0] * len(topics_list)
+    inc = 0
+    freq = 10
+
+    start_t = time.time()
     try:
         while True:
-            try:
-                if stream_name == "right":
-                    topic = '/miro/sim01/platform/camr/compressed'
-                elif stream_name == "left":
-                    topic = '/miro/sim01/platform/caml/compressed'
-                elif stream_name == "threshold":
-                    topic = "/blockly/imageVariables/threshold/compressed"
-                
-                image_data = rospy.wait_for_message(topic, CompressedImage, timeout=10)
-                
-                if image_data is not None:
-                #     image_name = rospy.wait_for_message('/blocklyVariables/image_name', String, timeout=1)
-                #     if image_name is not None:
-                #         print(image_name)
-                    yield (b'--frame\r\n'
-                           b'Content-Type: image/jpeg\r\n\r\n' + image_data.data + b'\r\n')
-            except rospy.exceptions.ROSException as e:
-                pass
+            msg_dict = dict()
+            tasks = [get_ros_image(topic_name) for topic_name in topics_list]
+
+            # schedule the tasks and retrieve results
+            results = await asyncio.gather(*tasks)
+            # print(results)
+
+            for i, r in enumerate(results):
+                if r is not None:
+                    counters[i] += 1
+                   
+                    msg_dict["image_" + str(i)] = \
+                    {"name": topics_list[i],
+                     "variable_name": topic_names[i],
+                     "data": base64.b64encode(r).decode("utf-8")}
+            
+            if len(msg_dict) > 0:
+                json_obj = json.dumps(msg_dict)
+                await websocket.send(json_obj)
+
     except Exception as e:
         print(e)
     except KeyboardInterrupt:
         rospy.signal_shutdown("interrupt")
 
 
-@app.route('/miro_left')
-def miro_left():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen("left"),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+# ssl_context.load_cert_chain(
+#     pathlib.Path(__file__).with_name('localhost.pem'))
 
-@app.route('/miro_right')
-def miro_right():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen("right"),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+# start_server = websockets.serve(message_sender, 'localhost', 5000, ssl=ssl_context)
+start_server = websockets.serve(message_sender, 'localhost', 5000)
 
-@app.route('/colour_thresh')
-def colour_thresh():
-    """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen("threshold"),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+loop = asyncio.get_event_loop()
+loop.run_until_complete(start_server)
+# loop.run_until_complete(message_sender)
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True)
+try:
+    loop.run_forever()
+except KeyboardInterrupt as e:
+    pass
+finally:
+    loop.close()
