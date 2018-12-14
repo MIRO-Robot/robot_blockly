@@ -23,7 +23,14 @@ rate = rospy.Rate(100)
 
 async def get_ros_image(image_topic):
     try:
-        return rospy.wait_for_message(image_topic, CompressedImage, timeout=0.5).data
+        if "compressed" in image_topic:
+            return rospy.wait_for_message(image_topic, CompressedImage, timeout=0.5).data
+        else:
+            uncompressed_msg = rospy.wait_for_message(image_topic, Image, timeout=0.5)
+            uncomp_arr = np.frombuffer(uncompressed_msg.data, dtype=np.uint8)
+            uncompressed = np.reshape(uncomp_arr, (uncompressed_msg.height, uncompressed_msg.width, 3))
+            uncompressed = cv2.cvtColor(uncompressed, cv2.COLOR_BGR2RGB)
+            return cv2.imencode('.jpg', uncompressed)[1]
     except rospy.exceptions.ROSException as e:
         return None
     except Exception as e:
@@ -33,7 +40,7 @@ async def get_ros_image(image_topic):
 
 async def message_sender(websocket, path):
     print("Starting server")
-    topics_list = ['/miro/sim01/platform/camr/compressed',
+    topics_list = ['/miro/sim01/platform/camr',
                    '/blockly/imageVariables/threshold/compressed']
 
     topic_names = ["Right Camera", "Colour Threshold"]
@@ -55,12 +62,12 @@ async def message_sender(websocket, path):
             for i, r in enumerate(results):
                 if r is not None:
                     counters[i] += 1
-                   
+
                     msg_dict["image_" + str(i)] = \
                     {"name": topics_list[i],
                      "variable_name": topic_names[i],
                      "data": base64.b64encode(r).decode("utf-8")}
-            
+
             if len(msg_dict) > 0:
                 json_obj = json.dumps(msg_dict)
                 await websocket.send(json_obj)
@@ -76,7 +83,7 @@ async def message_sender(websocket, path):
 #     pathlib.Path(__file__).with_name('localhost.pem'))
 
 # start_server = websockets.serve(message_sender, 'localhost', 5000, ssl=ssl_context)
-start_server = websockets.serve(message_sender, 'localhost', 5000)
+start_server = websockets.serve(message_sender, "0.0.0.0", 5000)
 
 loop = asyncio.get_event_loop()
 loop.run_until_complete(start_server)
